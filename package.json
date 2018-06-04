@@ -1,0 +1,29 @@
+{
+  "name": "vandyhacksform",
+  "version": "1.0.0",
+  "description": "Walk-in Form",
+  "engines": {
+    "node": "8.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-zhai/VandyHacksForm.git"
+  },
+  "keywords": [
+    "form",
+    "VandyHacks"
+  ],
+  "author": "k-zhai",
+  "license": "VandyHacks",
+  "bugs": {
+    "url": "https://github.com/k-zhai/VandyHacksForm/issues"
+  },
+  "homepage": "https://github.com/k-zhai/VandyHacksForm#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
