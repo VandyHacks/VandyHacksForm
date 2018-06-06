@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Walk-in Form",
   "engines": {
-    "node": "8.9.1"
+    "node": "8.9.3"
   },
   "main": "index.js",
   "scripts": {
@@ -18,12 +18,17 @@
     "VandyHacks"
   ],
   "author": "k-zhai",
-  "license": "VandyHacks",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/k-zhai/VandyHacksForm/issues"
   },
   "homepage": "https://github.com/k-zhai/VandyHacksForm#readme",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
   }
 }
