@@ -27,9 +27,11 @@ express()
       data.save()
         .then(item => {
           res.send("item saved to database");
+          console.log("item saved to database");
         })
         .catch(err => {
           res.status(400).send("unable to save to database");
+          console.log("unable to save to database");
         });
   })
   .use(parser.json())
