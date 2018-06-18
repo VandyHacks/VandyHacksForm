@@ -1,35 +1,34 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const PORT = process.env.PORT || 5000
-const parser = require('body-parser');
-const uri = 'mongodb://heroku_9d4txdmb:ol8lo56i5qd1u3ro3ubi7e3tug@ds163650.mlab.com:63650/heroku_9d4txdmb';
-
-
-mongoose.Promise = global.Promise;
-mongoose.connect(uri);
-
-var hackerSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String
-})
-var User = mongoose.model("Participants", hackerSchema);
-
+var express = require("express");
 var app = express();
-app.use('/', (req, res) => {
-  res.sendFile(__dirname + "/form.html");
+var port = 3000;
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/node-demo");
+var nameSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String
 });
-app.post('/add', (req, res) => {
-  var data = new User(req.body);
-  data.save()
-    .then(item => {
-      res.send("Saved to database");
-    })
-    .catch(err => {
-      res.status(400).send("Unable to save to database");
-    });
-})
-app.listen(PORT, () => {
-  console.log("Server listening on port " + PORT);
+var User = mongoose.model("User", nameSchema);
+
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
 });
 
+app.post("/addname", (req, res) => {
+    var myData = new User(req.body);
+    myData.save()
+        .then(item => {
+            res.send("Name saved to database");
+        })
+        .catch(err => {
+            res.status(400).send("Unable to save to database");
+        });
+});
+
+app.listen(port, () => {
+    console.log("Server listening on port " + port);
+});
