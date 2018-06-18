@@ -27,7 +27,7 @@ express()
   })
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://kzhai:vandyhacks5@ds251819.mlab.com:51819/vh-walk-in-form");
+mongoose.connect("mongodb://heroku_9d4txdmb:ol8lo56i5qd1u3ro3ubi7e3tug@ds163650.mlab.com:63650/heroku_9d4txdmb");
 
 var nameSchema = new mongoose.Schema({
   firstName: String,
