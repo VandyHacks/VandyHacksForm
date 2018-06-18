@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 63650
 const parser = require('body-parser');
 
 express() 
@@ -10,7 +10,7 @@ express()
     res.sendFile(__dirname + "/form.html");
   })
   .get('/', (req, res) => res.render('pages/index'))
-  .post("/add", (req, res) => {
+  .post('/add', (req, res) => {
       var data = new User(req.body);
       data.save()
         .then(item => {
