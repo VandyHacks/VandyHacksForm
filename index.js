@@ -16,23 +16,24 @@ var hackerSchema = new mongoose.Schema({
 })
 var Hacker = mongoose.model("Participants", hackerSchema);
 
-var app = express();
-app.use('/', (req, res) => {
-  res.sendFile(__dirname + "/form.html");
-});
-app.use(parser.urlencoded({ extended: true}));
-app.use(parser.json());
-app.post('/add', (req, res) => {
-  var data = new User(req.body);
-  data.save()
-    .then(item => {
-      res.send("Saved to database");
-    })
-    .catch(err => {
-      res.status(400).send("Unable to save to database");
-    });
-});
-app.listen(PORT, () => {
-  console.log("Server listening on port " + PORT);
-});
+express()
+  .use(parser.urlencoded({ extended: true}))
+  .use(parser.json())
+  .use('/', (req, res) => {
+    res.sendFile(__dirname + "/form.html");
+  })
+  .post('/add', (req, res) => {
+    console.log(req.body);
+    var data = new User(req.body);
+    data.save()
+      .then(item => {
+        res.send("Saved to database");
+      })
+      .catch(err => {
+        res.status(400).send("Unable to save to database");
+      });
+  })
+  .listen(PORT, () => {
+    console.log("Server listening on port " + PORT);
+  });
 
