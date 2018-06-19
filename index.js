@@ -18,7 +18,7 @@ var hackerSchema = new mongoose.Schema({
   email: String,
   phone: String
 })
-var Hacker = mongoose.model("Participants", hackerSchema);
+var Hacker = mongoose.model("Hacker", hackerSchema);
 
 app.use('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
