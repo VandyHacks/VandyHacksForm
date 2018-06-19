@@ -12,9 +12,6 @@ app.use(parser.json())
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error: '));
-
 var hackerSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
@@ -27,9 +24,15 @@ app.use('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
 })
 app.post('/add', (req, res) => {
-  db.collection('Hackers').save(req.body, (err, result) => {
-    if (err) return console.log("Unable to save to database")
-    console.log("Saved to database")
-    res.render('/')
-  })
+  var data = new Hacker(req.body);
+  data.save()
+    .then(item => {
+      res.send("Saved to database");
+    })
+    .catch(err => {
+      res.status(400).send("Unable to save to database");
+    })
+})
+app.listen(PORT, () => {
+  console.log("Server listening on port " + PORT);
 })
