@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const uri = 'mongodb://heroku_9d4txdmb:ol8lo56i5qd1u3ro3ubi7e3tug@ds163650.mlab.com:63650/heroku_9d4txdmb';
 const app = express();
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 const parser = require('body-parser');
 
 app.use(parser.urlencoded({ extended: true }))
