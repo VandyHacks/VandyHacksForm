@@ -8,29 +8,13 @@ const uri = 'mongodb://heroku_9d4txdmb:ol8lo56i5qd1u3ro3ubi7e3tug@ds163650.mlab.
 mongoose.Promise = global.Promise;
 mongoose.connect(uri);
 
-let db = mongoose.connection;
-var list = [];
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback() {
-  var hackerSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: String
-  })
-  let Hacker = mongoose.model("Participants", hackerSchema);
-  let newhacker = new Hacker({
-    firstName: document.getElementById('first'),
-    lastName: document.getElementById('last'),
-    email: document.getElementById('emailid'),
-    phone: document.getElementById('phoneid')
-  })
-  Hacker.insertOne(newhacker).then(() => {
-    console.log("Saved to database");
-  }).catch(err => {
-    console.log("Unable to save to database");
-  })
-});
+var hackerSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  email: String,
+  phone: String
+})
+var Hacker = mongoose.model("Participants", hackerSchema);
 
 var app = express();
 app.use('/', (req, res) => {
