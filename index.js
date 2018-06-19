@@ -9,7 +9,9 @@ const parser = require('body-parser');
 app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
+console.log("Connecting to db");
 mongoose.connect(uri);
+console.log("Connected");
 mongoose.Promise = global.Promise;
 
 var hackerSchema = new mongoose.Schema({
