@@ -21,7 +21,7 @@ app.use('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
 });
 app.post('/add', (req, res) => {
-  var data = new User(req.body);
+  var data = new Hacker(req.body);
   data.save()
     .then(item => {
       res.send("Saved to database");
