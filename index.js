@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const parser = require('body-parser');
-const uri = 'mongodb://kzhai:vandyhacks5@ds163650.mlab.com:63650/heroku_9d4txdmb';
+const uri = 'mongodb://vhdev:vandyhacks5@ds163650.mlab.com:63650/heroku_9d4txdmb';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
