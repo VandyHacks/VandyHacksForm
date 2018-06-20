@@ -29,7 +29,7 @@ db.once('open', function callback() {
   var Hacker = mongoose.model("Hacker", hackerSchema);
   app.post('/add', (req, res) => {
     var data = new Hacker(req.body);
-    data.save()
+    Hacker.insertOne(data)
       .then(item => {
         res.send("Saved to database");
       })
