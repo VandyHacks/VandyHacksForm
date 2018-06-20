@@ -34,7 +34,7 @@ db.once('open', function callback() {
         res.send("Saved to database");
       })
       .catch(err => {
-        res.status(400).send("Unable to save to database");
+        res.send("Unable to save to database");
       })
   }) 
 })
