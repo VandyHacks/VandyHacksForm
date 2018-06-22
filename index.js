@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
 const parser = require('body-parser');
 const uri = 'mongodb://vhdev:vandyhacks5@ds163650.mlab.com:63650/heroku_9d4txdmb';
 const app = express();
@@ -21,15 +20,16 @@ app.use('/', (req, res) => {
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
   var hackerSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: String
+    firstName: {type: String, max: 20},
+    lastName: {type: String, max: 20},
+    email: {type: String, max: 50},
+    phone: {type: String, max: 15}
   })
-  var Hacker = mongoose.model("Hacker", hackerSchema);
+  var Hacker = db.model("Hacker", hackerSchema);
+  module.exports = Hacker;
   app.post('/add', (req, res) => {
     var data = new Hacker(req.body);
-    Hacker.insertOne(data)
+    data.save()
       .then(item => {
         res.send("Saved to database");
       })
