@@ -13,10 +13,6 @@ mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
 
-app.listen(PORT, () => {
-  console.log("Server listening on port " + PORT);
-})
-
 app.use('/', (req, res, next) => {
   res.sendFile(__dirname + "/form.html");
   next();
@@ -43,6 +39,8 @@ db.once('open', function callback() {
   }) 
 })
 
-
+app.listen(PORT, () => {
+  console.log("Server listening on port " + PORT);
+})
 
 
