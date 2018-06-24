@@ -13,9 +13,8 @@ mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
 
-app.use('/', (req, res, next) => {
+app.use('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
-  next();
 })
 
 db.on('error', console.error.bind(console, 'connection error:'));
