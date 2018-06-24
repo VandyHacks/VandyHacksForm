@@ -13,8 +13,13 @@ mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
 
-app.use('/', (req, res) => {
+app.listen(PORT, () => {
+  console.log("Server listening on port " + PORT);
+})
+
+app.use('/', (req, res, next) => {
   res.sendFile(__dirname + "/form.html");
+  next();
 })
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -26,7 +31,6 @@ db.once('open', function callback() {
     phone: {type: String, max: 15}
   })
   var Hacker = db.model("Hacker", hackerSchema);
-  module.exports = Hacker;
   app.post('/add', (req, res) => {
     var data = new Hacker(req.body);
     data.save()
@@ -39,8 +43,6 @@ db.once('open', function callback() {
   }) 
 })
 
-app.listen(PORT, () => {
-  console.log("Server listening on port " + PORT);
-})
+
 
 
