@@ -13,29 +13,34 @@ mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
 
-app.use('/', (req, res) => {
-  res.sendFile(__dirname + "/form.html");
-})
-
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
-  var hackerSchema = new mongoose.Schema({
-    firstName: {type: String, max: 20},
-    lastName: {type: String, max: 20},
-    email: {type: String, max: 50},
-    phone: {type: String, max: 15}
-  })
-  var Hacker = db.model("Hacker", hackerSchema);
-  app.post('/add', (req, res) => {
-    var data = new Hacker(req.body);
-    data.save()
-      .then(item => {
-        res.send("Saved to database");
-      })
-      .catch(err => {
-        res.send("Unable to save to database");
-      })
-  }) 
+  console.log("Database open");
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/form.html");
+  console.log("Page loaded");
+})
+
+var hackerSchema = new mongoose.Schema({
+  firstName: {type: String, max: 20},
+  lastName: {type: String, max: 20},
+  email: {type: String, max: 100},
+  phone: {type: String, max: 15}
+})
+var Hacker = db.model("Hacker", hackerSchema);
+
+app.post('/', (req, res) => {
+  var data = new Hacker(req.body);
+  data.save()
+    .then(item => {
+      res.send("Saved to database");
+      console.log("Added one entry");
+    })
+    .catch(err => {
+      res.send("Unable to save to database");
+    })
 })
 
 app.listen(PORT, () => {
