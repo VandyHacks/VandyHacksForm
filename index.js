@@ -12,7 +12,7 @@ app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
 app.use(helmet());
-app.use(express.static("VandyHacksForm"))
+app.use('/static', express.static(path.join(__dirname, 'VandyHacksForm')));
 
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
