@@ -36,7 +36,7 @@ var hackerSchema = new mongoose.Schema({
 })
 var Hacker = db.model("Hacker", hackerSchema);
 
-app.post('/Users/kzhai/VandyHacksForm/submitted.html', [
+app.post('/', [
   check('firstName', 'Enter valid name')
     .isAlpha(),
   check('lastName', 'Enter valid name')
@@ -50,7 +50,7 @@ app.post('/Users/kzhai/VandyHacksForm/submitted.html', [
   var data = new Hacker(req.body);
   data.save()
     .then(item => {
-      res.send("Saved to database");
+      res.render('submitted.html');
       console.log("Added one entry");
     })
     .catch(err => {
