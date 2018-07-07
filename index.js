@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const parser = require('body-parser');
 const uri = 'mongodb://vhdev:vandyhacks5@ds163650.mlab.com:63650/heroku_9d4txdmb';
@@ -9,6 +10,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
+
+app.use(helmet());
+app.use(express.static('VandyHacksForm'));
 
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
@@ -33,7 +37,7 @@ var hackerSchema = new mongoose.Schema({
 })
 var Hacker = db.model("Hacker", hackerSchema);
 
-app.post('/', [
+app.post('/success', [
   check('firstName', 'Enter valid name')
     .isAlpha(),
   check('lastName', 'Enter valid name')
@@ -47,12 +51,16 @@ app.post('/', [
   var data = new Hacker(req.body);
   data.save()
     .then(item => {
-      res.send("Saved to database");
+      res.sendFile(__dirname + "/submitted.html");
       console.log("Added one entry");
     })
     .catch(err => {
       res.send("Unable to save to database");
     })
+})
+
+app.post('/', (req, res) => {
+  res.sendFile(__dirname + "/form.html");
 })
 
 app.listen(PORT, () => {
