@@ -12,7 +12,7 @@ app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
 app.use(helmet());
-app.use('/static', express.static('VandyHacksForm'));
+app.use(express.static('VandyHacksForm'));
 
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
@@ -51,7 +51,7 @@ app.post('/success', [
   var data = new Hacker(req.body);
   data.save()
     .then(item => {
-      res.sendFile('submitted.html');
+      res.sendFile(__dirname + "/submitted.html");
       console.log("Added one entry");
     })
     .catch(err => {
@@ -60,7 +60,7 @@ app.post('/success', [
 })
 
 app.post('/', (req, res) => {
-  res.sendFile('form.html');
+  res.sendFile(__dirname + "/form.html");
 })
 
 app.listen(PORT, () => {
