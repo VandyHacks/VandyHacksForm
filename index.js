@@ -36,7 +36,7 @@ var hackerSchema = new mongoose.Schema({
 })
 var Hacker = db.model("Hacker", hackerSchema);
 
-app.post('submitted.html', [
+app.post('/Users/kzhai/VandyHacksForm/submitted.html', [
   check('firstName', 'Enter valid name')
     .isAlpha(),
   check('lastName', 'Enter valid name')
