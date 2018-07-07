@@ -44,7 +44,7 @@ app.post('/success', [
     .isAlpha(),
   check('email', 'Enter valid email')
     .isEmail()
-    .normalizeEmail(),
+    .normalizeEmail(), 
   check('phone', 'Enter valid phone number')
     .isMobilePhone()
 ], (req, res) => {
