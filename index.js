@@ -51,7 +51,7 @@ app.post('/success', [
   var data = new Hacker(req.body);
   data.save()
     .then(item => {
-      res.sendFile('/submitted.html');
+      res.sendFile('submitted.html');
       console.log("Added one entry");
     })
     .catch(err => {
@@ -60,7 +60,7 @@ app.post('/success', [
 })
 
 app.post('/', (req, res) => {
-  res.sendFile('/form.html');
+  res.sendFile('form.html');
 })
 
 app.listen(PORT, () => {
