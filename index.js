@@ -36,7 +36,7 @@ var hackerSchema = new mongoose.Schema({
 })
 var Hacker = db.model("Hacker", hackerSchema);
 
-app.post('/', [
+app.post('/success', [
   check('firstName', 'Enter valid name')
     .isAlpha(),
   check('lastName', 'Enter valid name')
@@ -50,12 +50,16 @@ app.post('/', [
   var data = new Hacker(req.body);
   data.save()
     .then(item => {
-      res.render('submitted.html');
+      res.sendFile('/Users/kzhai/VandyHacksForm/submitted.html');
       console.log("Added one entry");
     })
     .catch(err => {
       res.send("Unable to save to database");
     })
+})
+
+app.post('/', (req, res) => {
+  res.sendFile('/Users/kzhai/VandyHacksForm/form.html');
 })
 
 app.listen(PORT, () => {
