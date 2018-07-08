@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const parser = require('body-parser');
-const uri = 'mongodb://vhdev:vandyhacks5@ds163650.mlab.com:63650/heroku_9d4txdmb';
+const uri = process.env.PROD_MONGODB;
 const { check, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
 const app = express();
@@ -44,7 +44,7 @@ app.post('/success', [
     .isAlpha(),
   check('email', 'Enter valid email')
     .isEmail()
-    .normalizeEmail(), 
+    .normalizeEmail(),
   check('phone', 'Enter valid phone number')
     .isMobilePhone()
 ], (req, res) => {
