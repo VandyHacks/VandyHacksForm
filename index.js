@@ -59,7 +59,7 @@ app.post('/success', [
     })
 })
 
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
 })
 
