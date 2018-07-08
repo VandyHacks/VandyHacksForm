@@ -61,9 +61,6 @@ app.post('/success', [
 
 app.post('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
-  setTimeout(function () {
-    window.location = __dirname + "/form.html";
-  }, 3000)
 })
 
 app.listen(PORT, () => {
