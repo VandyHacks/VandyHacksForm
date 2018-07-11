@@ -37,6 +37,7 @@ var hackerSchema = new mongoose.Schema({
   phone: {type: String, max: 15}
 })
 var Hacker = db.model("Hacker", hackerSchema);
+module.exports = Hacker;
 
 app.post('/success', [
   check('firstName', 'Enter valid name')
