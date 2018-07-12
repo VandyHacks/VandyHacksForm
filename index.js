@@ -52,11 +52,10 @@ app.post('/success', [
   check('phone', 'Enter valid phone number')
     .isMobilePhone()
 ], (req, res) => {
-  res.send(req.body);
   var data = new Hacker(req.body);
   data.save()
     .then(item => {
-      //res.sendFile(__dirname + "/submitted.html");
+      res.sendFile(__dirname + "/submitted.html");
       console.log("Added one entry");
     })
     .catch(err => {
