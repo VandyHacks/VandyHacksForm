@@ -55,7 +55,8 @@ app.post('/success', [
   var data = new Hacker(req.body);
   data.save()
     .then(item => {
-      res.sendFile(__dirname + "/submitted.html");
+      //res.sendFile(__dirname + "/submitted.html");
+      res.send(req.body);
       console.log("Added one entry");
     })
     .catch(err => {
