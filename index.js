@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
@@ -72,3 +70,5 @@ app.post('/', (req, res) => {
 app.listen(PORT, () => {
   console.log("Server listening on port " + PORT);
 })
+
+
