@@ -19,7 +19,7 @@ app.use(express.static('VandyHacksForm'));
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
@@ -31,14 +31,14 @@ app.get('/', (req, res) => {
   console.log("Page loaded");
 })
 
-var hackerSchema = new mongoose.Schema({
+const hackerSchema = new mongoose.Schema({
   firstName: {type: String, max: 20},
   lastName: {type: String, max: 20},
   school: {type: String, max: 50},
   email: {type: String, max: 100},
   phone: {type: String, max: 15}
 })
-var Hacker = db.model("Hacker", hackerSchema);
+const Hacker = db.model("Hacker", hackerSchema);
 module.exports = Hacker;
 
 app.post('/success', [
@@ -54,7 +54,7 @@ app.post('/success', [
   check('phone', 'Enter valid phone number')
     .isMobilePhone()
 ], (req, res) => {
-  var data = new Hacker(req.body);
+  let data = new Hacker(req.body);
   data.save()
     .then(item => {
       res.sendFile(__dirname + "/submitted.html");
