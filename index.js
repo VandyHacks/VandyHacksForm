@@ -32,15 +32,19 @@ app.get('/', (req, res) => {
 var hackerSchema = new mongoose.Schema({
   firstName: {type: String, max: 20},
   lastName: {type: String, max: 20},
+  school: {type: String, max: 50},
   email: {type: String, max: 100},
   phone: {type: String, max: 15}
 })
 var Hacker = db.model("Hacker", hackerSchema);
+module.exports = Hacker;
 
 app.post('/success', [
   check('firstName', 'Enter valid name')
     .isAlpha(),
   check('lastName', 'Enter valid name')
+    .isAlpha(),
+  check('school', 'Enter valid school')
     .isAlpha(),
   check('email', 'Enter valid email')
     .isEmail()
