@@ -1,10 +1,7 @@
-'use strict';
-
 const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const parser = require('body-parser');
-const cors = require('cors');
 const uri = process.env.PROD_MONGODB;
 const { check, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
@@ -20,26 +17,26 @@ app.use(express.static('VandyHacksForm'));
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
 
-const db = mongoose.connection;
+var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
   console.log("Database open");
 })
 
-app.get('/', cors(), (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
   console.log("Page loaded");
 })
 
-const hackerSchema = new mongoose.Schema({
+var hackerSchema = new mongoose.Schema({
   firstName: {type: String, max: 20},
   lastName: {type: String, max: 20},
   school: {type: String, max: 50},
   email: {type: String, max: 100},
   phone: {type: String, max: 15}
 })
-const Hacker = db.model("Hacker", hackerSchema);
+var Hacker = db.model("Hacker", hackerSchema);
 module.exports = Hacker;
 
 app.post('/success', [
@@ -54,8 +51,8 @@ app.post('/success', [
     .normalizeEmail(),
   check('phone', 'Enter valid phone number')
     .isMobilePhone()
-], cors(), (req, res) => {
-  let data = new Hacker(req.body);
+], (req, res) => {
+  var data = new Hacker(req.body);
   data.save()
     .then(item => {
       res.sendFile(__dirname + "/submitted.html");
@@ -66,12 +63,10 @@ app.post('/success', [
     })
 })
 
-app.post('/', cors(), (req, res) => {
+app.post('/', (req, res) => {
   res.sendFile(__dirname + "/form.html");
 })
 
-app.listen(PORT, cors(), () => {
+app.listen(PORT, () => {
   console.log("Server listening on port " + PORT);
 })
-
-
