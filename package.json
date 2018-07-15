@@ -7,8 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "buildstart": "cd scripts && browserify client.js -o bundle.js && cd ../ && npm start"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +24,6 @@
   },
   "homepage": "https://github.com/k-zhai/VandyHacksForm#readme",
   "dependencies": {
-    "autosuggest-trie": "^2.1.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-validator": "^5.2.0",

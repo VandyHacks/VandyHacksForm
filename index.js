@@ -13,8 +13,6 @@ app.use(parser.json())
 
 app.use(helmet());
 app.use(express.static('VandyHacksForm'));
-app.use(express.static(__dirname + '/scripts'));
-
 
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
