@@ -34,7 +34,7 @@ promise()
       }
 
       const inputText = input.value.trim();
-      results = trie.getMatches(inputText, { limit: 4, splitRegex: splitByHyphen });
+      results = trie.getMatches(inputText, { limit: 20, splitRegex: splitByHyphen });
       results.forEach((item) => {
         const option = document.createElement('option');
         option.value = item.name;

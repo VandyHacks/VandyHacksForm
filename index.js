@@ -44,16 +44,16 @@ const Hacker = db.model('Hacker', hackerSchema);
 module.exports = Hacker;
 
 app.post('/success', [
-  check('firstName', 'Enter valid name')
+  check('firstName', 'Enter valid name').trim()
     .isAlpha(),
-  check('lastName', 'Enter valid name')
+  check('lastName', 'Enter valid name').trim()
     .isAlpha(),
-  check('school', 'Enter valid school')
+  check('school', 'Enter valid school').trim()
     .isAlpha(),
-  check('email', 'Enter valid email')
+  check('email', 'Enter valid email').trim()
     .isEmail()
     .normalizeEmail(),
-  check('phone', 'Enter valid phone number')
+  check('phone', 'Enter valid phone number').trim()
     .isMobilePhone(),
 ], cors(), (req, res) => {
   const data = new Hacker(req.body);
