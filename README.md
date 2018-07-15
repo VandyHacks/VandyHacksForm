@@ -9,6 +9,6 @@ Tech: Express, MongoDB (mlab), Bootstrap
 
 Make an `.env` file with MongoDB configs.
 ```
-npm i
+npm run dev
 npm start
 ```
