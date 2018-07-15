@@ -18,7 +18,7 @@ function promise() {
 }
 
 promise()
-  .then((universityList) => {
+  .then(() => {
     const universities = universityList.map(uni => ({ name: uni }));
     const splitByHyphen = /\s+|-/;
     const trie = createTrie(universities, 'name', { splitRegex: splitByHyphen });
