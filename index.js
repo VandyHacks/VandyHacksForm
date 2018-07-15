@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const parser = require('body-parser');
+const cors = require('cors');
 
 const uri = process.env.PROD_MONGODB;
 const { check } = require('express-validator/check');
@@ -27,7 +28,7 @@ db.once('open', () => {
   console.log('Database open');
 });
 
-app.get('/', (req, res) => {
+app.get('/', cors(), (req, res) => {
   res.sendFile(`${__dirname}/form.html`);
   console.log('Page loaded');
 });
@@ -54,7 +55,7 @@ app.post('/success', [
     .normalizeEmail(),
   check('phone', 'Enter valid phone number')
     .isMobilePhone(),
-], (req, res) => {
+], cors(), (req, res) => {
   const data = new Hacker(req.body);
   data.save()
     .then(
@@ -66,10 +67,10 @@ app.post('/success', [
     );
 });
 
-app.post('/', (req, res) => {
+app.post('/', cors(), (req, res) => {
   res.sendFile(`${__dirname}/form.html`);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, cors(), () => {
   console.log(`Server listening on port ${PORT}`);
 });
