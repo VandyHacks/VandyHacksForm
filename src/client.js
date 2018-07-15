@@ -1,16 +1,15 @@
-let createTrie = require('autosuggest-trie');
-
+const createTrie = require('autosuggest-trie');
 const dataList = document.getElementById('json-datalist');
 const input = document.getElementById('school');
-let universityList;
 
 function promise() {
  return new Promise((resolve, reject) => {
-  
+    let universityList;
     const request = new XMLHttpRequest();
-    request.open('GET', 'universities.json', false);
+    request.open('GET', './universities.json', false);
     request.onload = () => {
       universityList = JSON.parse(request.responseText);
+      console.log(universityList);
       input.placeholder = "Your School";
     };  
     request.send();
