@@ -26,7 +26,7 @@ promise()
     input.onkeyup = function () {
       // checks if number of colleges shown is > 4 then removes the last item
       if (dataList.options.length > 4) {
-        dataList.children[0].remove();
+        dataList.children[dataList.options.length - 1].remove();
       }
       // clears if the dataList if the input text is there is imbalance alphabetically
       if (dataList.options[0] != null && dataList.options[0].value > input.value) {
@@ -34,7 +34,7 @@ promise()
       }
 
       const inputText = input.value.trim();
-      results = trie.getMatches(inputText, { limit: 20, splitRegex: splitByHyphen });
+      results = trie.getMatches(inputText, { limit: 4, splitRegex: splitByHyphen });
       results.forEach((item) => {
         const option = document.createElement('option');
         option.value = item.name;
