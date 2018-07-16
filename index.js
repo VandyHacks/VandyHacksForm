@@ -14,7 +14,6 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 
 app.use(helmet());
-app.use(express.static('VandyHacksForm'));
 app.use(express.static(`${__dirname}/dist`));
 
 
