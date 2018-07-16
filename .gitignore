@@ -1,3 +1,7 @@
 node_modules
 *.env
+<<<<<<< HEAD
 dist
+=======
+dist
+>>>>>>> 9f4ddc4ed47a6ee1a83bdf79a033ba125a292827
