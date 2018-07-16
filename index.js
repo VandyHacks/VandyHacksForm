@@ -61,9 +61,10 @@ app.post('/success', [
       res.sendFile(`${__dirname}/dist/submitted.html`),
       console.log('Added one entry'),
     )
-    .catch(
-      res.send('Unable to save to database'),
-    );
+    .catch((err) => {
+      console.log(err);
+      res.send('Unable to save to database');
+    });
 });
 
 app.post('/', cors(), (req, res) => {
