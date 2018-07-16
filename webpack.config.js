@@ -15,6 +15,15 @@ module.exports = {
   module: {
     rules: [
       {
+        type: 'javascript/auto',
+        test: /\.json/,
+        exclude: /(node_modules|bower_components)/,
+        use: [{
+          loader: 'file-loader',
+          options: { name: '[name].[ext]' },
+        }],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
