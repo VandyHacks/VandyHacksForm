@@ -15,7 +15,7 @@ app.use(parser.json());
 
 app.use(helmet());
 app.use(express.static('VandyHacksForm'));
-app.use(express.static(`${__dirname}/src`));
+app.use(express.static(`${__dirname}/dist`));
 
 
 mongoose.connect(uri);
@@ -29,7 +29,7 @@ db.once('open', () => {
 });
 
 app.get('/', cors(), (req, res) => {
-  res.sendFile(`${__dirname}/form.html`);
+  res.sendFile(`${__dirname}/dist/form.html`);
   console.log('Page loaded');
 });
 
@@ -59,7 +59,7 @@ app.post('/success', [
   const data = new Hacker(req.body);
   data.save()
     .then(
-      res.sendFile(`${__dirname}/submitted.html`),
+      res.sendFile(`${__dirname}/dist/submitted.html`),
       console.log('Added one entry'),
     )
     .catch(
@@ -68,7 +68,7 @@ app.post('/success', [
 });
 
 app.post('/', cors(), (req, res) => {
-  res.sendFile(`${__dirname}/form.html`);
+  res.sendFile(`${__dirname}/dist/form.html`);
 });
 
 app.listen(PORT, cors(), () => {
