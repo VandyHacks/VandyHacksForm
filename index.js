@@ -15,7 +15,7 @@ app.use(parser.json());
 
 app.use(helmet());
 app.use(express.static('VandyHacksForm'));
-app.use(express.static(`${__dirname}/scripts`));
+app.use(express.static(`${__dirname}/src`));
 
 
 mongoose.connect(uri);

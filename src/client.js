@@ -7,7 +7,7 @@ let universityList;
 function promise() {
   return new Promise((resolve) => {
     const request = new XMLHttpRequest();
-    request.open('GET', 'universities.json', false);
+    request.open('GET', './universities.json', false);
     request.onload = () => {
       universityList = JSON.parse(request.responseText);
       input.placeholder = 'Your School';
@@ -24,10 +24,6 @@ promise()
     const trie = createTrie(universities, 'name', { splitRegex: splitByHyphen });
     let results;
     input.onkeyup = function () {
-      // checks if number of colleges shown is > 4 then removes the last item
-      if (dataList.options.length > 4) {
-        dataList.children[dataList.options.length - 1].remove();
-      }
       // clears if the dataList if the input text is there is imbalance alphabetically
       if (dataList.options[0] != null && dataList.options[0].value > input.value) {
         dataList.innerHTML = '';
@@ -40,8 +36,11 @@ promise()
         option.value = item.name;
         option.id = item.name;
 
-        // if statement to check if the item already exists in dataList
+        // check if the item already exists in dataList; remove an item if length > 4
         if (dataList.options.namedItem(option.id) === null) {
+          if (dataList.options.length > 4) {
+            dataList.children[0].remove();
+          }
           dataList.appendChild(option);
         }
       });
