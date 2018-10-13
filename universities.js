@@ -1,4 +1,4 @@
-[
+const UNIVERSITIES = [
     "Abilene Christian University",
     "Adams State University",
     "Adelphi University",
@@ -1436,4 +1436,4 @@
     "York University",
     "Young Harris College",
     "Youngstown State University"
-]
+];
