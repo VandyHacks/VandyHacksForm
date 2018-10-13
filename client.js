@@ -1,49 +1,49 @@
-const createTrie = require('autosuggest-trie');
-
 const dataList = document.getElementById('json-datalist');
 const input = document.getElementById('school');
-let universityList;
+const universityList = UNIVERSITIES;
 
-function promise() {
-  return new Promise((resolve) => {
-    const request = new XMLHttpRequest();
-    request.open('GET', './universities.json', false);
-    request.onload = () => {
-      universityList = JSON.parse(request.responseText);
-      input.placeholder = 'Your School';
-    };
-    request.send();
-    resolve(universityList);
-  });
-}
-
-promise()
-  .then(() => {
-    const universities = universityList.map(uni => ({ name: uni }));
-    const splitByHyphen = /\s+|-/;
-    const trie = createTrie(universities, 'name', { splitRegex: splitByHyphen });
-    let results;
-    input.onkeyup = function () {
-      // clears if the dataList if the input text is there is imbalance alphabetically
-      if (dataList.options[0] != null && dataList.options[0].value > input.value) {
-        dataList.innerHTML = '';
-      }
-
-      const inputText = input.value.trim();
-      results = trie.getMatches(inputText, { limit: 4, splitRegex: splitByHyphen });
-      results.forEach((item) => {
-        const option = document.createElement('option');
-        option.value = item.name;
-        option.id = item.name;
-
-        // check if the item already exists in dataList; remove an item if length > 4
-        if (dataList.options.namedItem(option.id) === null) {
-          if (dataList.options.length > 4) {
-            dataList.children[0].remove();
-          }
-          dataList.appendChild(option);
-        }
-      });
-    };
+window.onload = event => {
+  // fill grad year select
+  ['2018', '2019', '2020', '2021', '2022'].forEach(e => {
+    $("#event-selector").append(
+      $("<option />")
+      .val(e)
+      .text(e)
+    );
   });
 
+  // fill gender select
+  ['M', 'F', 'O', 'N'].forEach(e => {
+    $("#event-selector").append(
+      $("<option />")
+      .val(e)
+      .text(e)
+    );
+  });
+
+};
+
+input.onkeyup = function (e) {
+  if (e.keycode === 13){
+    console.log('Enter pressed.')
+    // TODO: 
+    // put top result of dropdown as html value
+    $('#email').focus();
+  }
+  // clear
+  dataList.innerHTML = '';
+  // match input
+  const inputText = input.value.trim();
+  const criteria = e => e.toLowerCase().includes(inputText.toLowerCase());
+  const results = universityList.filter(criteria).slice(0, 5);
+
+  console.log(results)
+  // build new list
+  results.forEach((item) => {
+    const option = document.createElement('option');
+    option.value = item;
+    option.id = item;
+    // check if the item already exists in dataList; remove an item if length > 4
+    dataList.appendChild(option);
+  });
+};

@@ -19,34 +19,44 @@
         <div class="col">
           <form action="/success" method="post" class="justify-content-center">
             <div class="form-group">
-              <label for="firstName">Enter Your First Name</label>
-              <input type="text" class="form-control" name="firstName" id="firstName" placeholder="John" required>
+              <label for="name">Full Name</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="John Smith" required>
             </div>
             <div class="form-group">
-              <label for="lastName">Enter Your Last Name</label>
-              <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Smith" required>
-            </div>
-            <div class="form-group">
-              <label for="school">Enter Your University</label>
+              <label for="school">University</label>
               <input type="text" id="school" name="school" class="form-control" list="json-datalist" placeholder="Your School" required>
               <datalist id="json-datalist"></datalist>
             </div>
             <div class="form-group">
-              <label for="email">Enter Email</label>
+              <label for="email">Email</label>
               <input type="email" class="form-control" name="email" id="email" placeholder="johnsmith@yourmail.com" required>
             </div>
             <div class="form-group"> 
-              <label for="phone">Enter Phone Number</label>
+              <label for="phone">Phone Number</label>
               <input type="tel" class="form-control" name="phone" id="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
             </div>
+            <br>
+            <div>
+              <select class="custom-select" id="year-selector">
+                  <option selected>Graduation Year</option>
+              </select>
+            </div>
+            <br>
+            <div>
+              <select class="custom-select" id="gender-selector">
+                  <option selected>Gender</option>
+              </select>
+            </div>
+            <br>
             <div class="text-center">
               <input type="submit" class="btn btn-outline-secondary" value="Submit">
             </div>
             
 
-            <!-- <script src="universities.json" type="text/javascript" ></script> -->
-            <script src="bundle.js"></script>
+
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="universities.js" type="text/javascript" ></script>
+            <script src="client.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
           </form>
