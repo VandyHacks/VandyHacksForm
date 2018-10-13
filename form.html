@@ -19,7 +19,7 @@
   <div class="container center-block" style="width: 50%;">
     <div class="row center-block">
       <div class="col">
-        <form action="/success" method="post" class="justify-content-center">
+        <form onsubmit="submitform()" class="justify-content-center">
           <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="John Smith" required>
@@ -42,13 +42,13 @@
           </div>
           <br>
           <div>
-            <select class="custom-select" id="year-selector">
+            <select class="custom-select" id="year-selector" required>
               <option selected>Graduation Year</option>
             </select>
           </div>
           <br>
           <div>
-            <select class="custom-select" id="gender-selector">
+            <select class="custom-select" id="gender-selector" required>
               <option selected>Gender</option>
             </select>
           </div>

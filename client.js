@@ -24,6 +24,7 @@ window.onload = event => {
 };
 
 function updateUnivList() {
+  // TODO: fix dropdown is only shown properly when pressing backspace, doesn't show when typing
   // clear
   dataList.innerHTML = '';
   // match input
@@ -52,3 +53,9 @@ $("#school").on('keypress', e => {
   }
   updateUnivList();
 });
+
+function submitform() {
+  // TODO: fix form submit
+  alert('form submitted.')
+  return false;
+};
