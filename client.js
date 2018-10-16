@@ -54,6 +54,7 @@ $("#school").on('keypress', e => {
   updateUnivList();
 });
 
+
 function submitform() {
   // TODO: fix form submit
   alert('form submitted.')
