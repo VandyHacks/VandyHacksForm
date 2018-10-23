@@ -20,7 +20,7 @@ window.onload = event => {
       .text(e)
     );
   });
-
+  hideInputs(true);
 };
 
 function updateUnivList() {
@@ -60,3 +60,69 @@ function submitform() {
   alert('form submitted.')
   return false;
 };
+
+/**************************************************************************************************/
+/*********************************** Authorization stuff ******************************************/
+
+async function authorizedJSONFetch(url) {
+  const res = await fetch(transformURL(url), {
+    headers:new Headers({ "x-event-secret": token })
+  });
+  return await res.json();
+}
+
+// set auth JWT token
+async function setToken() {
+  console.log(token);
+  try {
+    const res = await fetch(
+      transformURL("https://apply.vandyhacks.org/auth/eventcode/"),
+      {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify({
+          token: token
+        })
+      }
+    );
+    if (res.ok) {
+      const authElem = dom("#auth");
+      authElem.parentNode.removeChild(authElem);
+      dom("#maindiv").style.display = "block";
+    } else {
+      console.log("invalid token");
+      alert("Invalid token");
+    }
+    await fetchUserData();
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+// On auth code popup submit, set the token and call setToken()
+dom("#authcode").addEventListener("keyup", e => {
+  if (e.keyCode === 13) {
+    token = dom("#authcode").value;
+    setToken();
+  }
+});
+
+
+/**************************************************************************************************/
+/****************************************** Utils *************************************************/
+
+function transformURL(url) {
+  const isDev = !location.hostname.endsWith("vandyhacks.org");
+  // bypass CORS issues in client-side API calls during localhost/dev, see https://github.com/Freeboard/thingproxy
+  return isDev ? "https://thingproxy.freeboard.io/fetch/" + url : url;
+}
+
+// toggle hiding elems
+function hideInputs(hide) {
+  const elems = ["#forms"];
+  elems.forEach(e => {
+    dom(e).style.display = hide ? 'none' : 'block';
+  });
+}
