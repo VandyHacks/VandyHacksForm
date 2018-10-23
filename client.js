@@ -95,7 +95,6 @@ async function setToken() {
       console.log("invalid token");
       alert("Invalid token");
     }
-    await fetchUserData();
   } catch (err) {
     return console.error(err);
   }
