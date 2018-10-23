@@ -91,6 +91,7 @@ async function setToken() {
       const authElem = dom("#auth");
       authElem.parentNode.removeChild(authElem);
       dom("#maindiv").style.display = "block";
+      hideInputs(false);
     } else {
       console.log("invalid token");
       alert("Invalid token");
