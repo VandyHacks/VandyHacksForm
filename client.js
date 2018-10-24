@@ -62,12 +62,12 @@ function submitform() {
       "x-event-secret": token,
     },
     body: JSON.stringify({
-      name: name,
-      school: school,
-      email: email,
-      phone: phone,
-      year: year,
-      gender: gender
+      name: document.getElementById('name').value,
+      school: document.getElementById('school').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      year: document.getElementById('year').value,
+      gender: document.getElementById('gender').value,
     })
   })
   .then(function (data) {  
