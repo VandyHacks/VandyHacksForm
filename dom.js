@@ -1,6 +1,6 @@
 /*
  * mimic jQuery DOM functionality with jQuery syntax
- * creates elements, and selects elements using $
+ * creates elements, and selects elements using dom
  *
  */
 const dom = (str) => {

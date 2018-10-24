@@ -1,13 +1,12 @@
 const dataList = document.getElementById('json-datalist');
 const input = document.getElementById('school');
 const universityList = UNIVERSITIES;
-const $ = document.getElementById;
 
 window.onload = event => {
   // fill grad year select
   ['2018', '2019', '2020', '2021', '2022'].forEach(e => {
-    $("#year-selector").append(
-      $("<option />")
+    dom("#year-selector").append(
+      dom("<option />")
       .val(e)
       .text(e)
     );
@@ -15,8 +14,8 @@ window.onload = event => {
 
   // fill gender select
   ['M', 'F', 'O', 'N'].forEach(e => {
-    $("#gender-selector").append(
-      $("<option />")
+    dom("#gender-selector").append(
+      dom("<option />")
       .val(e)
       .text(e)
     );
@@ -43,14 +42,14 @@ function updateUnivList() {
   console.log(dataList.options)
 }
 
-$("#school").on('keypress', e => {
+dom("#school").addEventListener("keyup", e => {
   console.log(e.keyCode)
   if (e.keyCode === 13) {
     console.log('Enter pressed.')
     // put top result of dropdown as html value
     input.value = dataList.options[0].value; 
     // focus on next elem
-    $('#email').focus();
+    dom('#email').focus();
   }
   updateUnivList();
 });
@@ -60,15 +59,15 @@ function submitform() {
   fetch('api/walkin/profile', {  
     method: 'POST',  
     headers: {
-      "x-event-secret": $('authcode').value,
+      "x-event-secret": dom('#authcode').value,
     },
     body: JSON.stringify({
-      name: $('name').value,
-      school: $('school').value,
-      email: $('email').value,
-      phone: $('phone').value,
-      year: $('year').value,
-      gender: $('gender').value,
+      name: dom('#name').value,
+      school: dom('#school').value,
+      email: dom('#email').value,
+      phone: dom('#phone').value,
+      year: dom('#year').value,
+      gender: dom('#gender').value,
     })
   })
   .then(function (data) {  
