@@ -1,7 +1,7 @@
 const dataList = document.getElementById('json-datalist');
 const input = document.getElementById('school');
 const universityList = UNIVERSITIES;
-$ = document.getElementById;
+const $ = document.getElementById;
 
 window.onload = event => {
   // fill grad year select
