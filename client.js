@@ -5,20 +5,18 @@ const universityList = UNIVERSITIES;
 window.onload = event => {
   // fill grad year select
   ['2018', '2019', '2020', '2021', '2022'].forEach(e => {
-    dom("#year-selector").append(
-      dom("<option />")
-      .val(e)
-      .text(e)
-    );
+    const newoption = dom("<option>");
+    newoption.value = e;
+    newoption.text = e;
+    dom("#year-selector").appendChild(newoption);
   });
 
   // fill gender select
   ['M', 'F', 'O', 'N'].forEach(e => {
-    dom("#gender-selector").append(
-      dom("<option />")
-      .val(e)
-      .text(e)
-    );
+    const newoption = dom("<option>");
+    newoption.value = e;
+    newoption.text = e;
+    dom("#gender-selector").appendChild(newoption);
   });
   hideInputs(true);
 };
