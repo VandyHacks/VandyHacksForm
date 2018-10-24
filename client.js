@@ -62,7 +62,9 @@ function submitform() {
   }
   fetch('api/walkin/profile', {  
     method: 'POST',  
-    header: 'x-event-secret',
+    headers: {
+      "x-event-secret": token,
+    },
     body: data
   })
   .then(function (data) {  
