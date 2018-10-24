@@ -60,7 +60,7 @@ function submitform() {
   fetch('api/walkin/profile', {  
     method: 'POST',  
     headers: {
-      "x-event-secret": token,
+      "x-event-secret": $('authcode').value,
     },
     body: JSON.stringify({
       name: $('name').value,
