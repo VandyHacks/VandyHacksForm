@@ -56,16 +56,19 @@ $("#school").on('keypress', e => {
 
 
 function submitform() {
-  const data = new URLSearchParams();
-  for (const pair of new FormData(myForm)) {
-    data.append(pair[0], pair[1]);
-  }
   fetch('api/walkin/profile', {  
     method: 'POST',  
     headers: {
       "x-event-secret": token,
     },
-    body: data
+    body: JSON.stringify({
+      name: name,
+      school: school,
+      email: email,
+      phone: phone,
+      year: year,
+      gender: gender
+    })
   })
   .then(function (data) {  
     console.log('Request success: ', data);  
