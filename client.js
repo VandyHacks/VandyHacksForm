@@ -1,6 +1,7 @@
 const dataList = document.getElementById('json-datalist');
 const input = document.getElementById('school');
 const universityList = UNIVERSITIES;
+$ = document.getElementById;
 
 window.onload = event => {
   // fill grad year select
@@ -62,12 +63,12 @@ function submitform() {
       "x-event-secret": token,
     },
     body: JSON.stringify({
-      name: document.getElementById('name').value,
-      school: document.getElementById('school').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      year: document.getElementById('year').value,
-      gender: document.getElementById('gender').value,
+      name: $('name').value,
+      school: $('school').value,
+      email: $('email').value,
+      phone: $('phone').value,
+      year: $('year').value,
+      gender: $('gender').value,
     })
   })
   .then(function (data) {  
