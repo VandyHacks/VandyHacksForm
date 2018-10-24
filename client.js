@@ -56,26 +56,21 @@ $("#school").on('keypress', e => {
 
 
 function submitform() {
-  var XHR = new XMLHttpRequest();
-  var FD  = new FormData(document.getElementById("myForm"));
-
-  // Define what happens on successful data submission
-  XHR.addEventListener("load", function(event) {
-    alert('Form Submitted!');
+  const data = new URLSearchParams();
+  for (const pair of new FormData(myForm)) {
+    data.append(pair[0], pair[1]);
+  }
+  fetch('api/walkin/profile', {  
+    method: 'POST',  
+    header: 'x-event-secret',
+    body: data
+  })
+  .then(function (data) {  
+    console.log('Request success: ', data);  
+  })  
+  .catch(function (error) {  
+    console.log('Request failure: ', error);  
   });
-
-  // Define what happens in case of error
-  XHR.addEventListener("error", function(event) {
-    alert('Oops! Something went wrong.');
-  });
-
-  // Set up our request
-  XHR.open('POST', 'https://apply.vandyhacks.org/api/walkin/profile');
-
-  XHR.setRequestHeader(header, 'x-event-secret');
-
-  // Send our FormData object; HTTP headers are set automatically
-  XHR.send(FD);
   return false;
 };
 
