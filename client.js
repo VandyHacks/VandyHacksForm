@@ -1,6 +1,7 @@
 const dataList = document.getElementById('json-datalist');
 const input = document.getElementById('school');
 const universityList = UNIVERSITIES;
+$ = document.getElementById;
 
 window.onload = event => {
   // fill grad year select
@@ -56,8 +57,26 @@ $("#school").on('keypress', e => {
 
 
 function submitform() {
-  // TODO: fix form submit
-  alert('form submitted.')
+  fetch('api/walkin/profile', {  
+    method: 'POST',  
+    headers: {
+      "x-event-secret": $('authcode').value,
+    },
+    body: JSON.stringify({
+      name: $('name').value,
+      school: $('school').value,
+      email: $('email').value,
+      phone: $('phone').value,
+      year: $('year').value,
+      gender: $('gender').value,
+    })
+  })
+  .then(function (data) {  
+    console.log('Request success: ', data);  
+  })  
+  .catch(function (error) {  
+    console.log('Request failure: ', error);  
+  });
   return false;
 };
 
