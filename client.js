@@ -1,6 +1,7 @@
 const dataList = document.getElementById('json-datalist');
 const input = document.getElementById('school');
 const universityList = UNIVERSITIES;
+let token;
 
 window.onload = event => {
   // fill grad year select
@@ -54,10 +55,10 @@ dom("#school").addEventListener("keyup", e => {
 
 
 function submitform() {
-  fetch('api/walkin/profile', {  
+  fetch('https://apply.vandyhacks.org/api/walkin/profile', {  
     method: 'POST',  
     headers: new Headers({
-      "x-event-secret": dom('#authcode').value,
+      "x-event-secret": token,
     }),
     body: JSON.stringify({
       name: dom('#name').value,
