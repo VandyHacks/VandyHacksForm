@@ -61,7 +61,8 @@ dom("#school").addEventListener("keyup", e => {
 });
 
 
-function submitform() {
+function submitform(e) {
+  e.preventDefault();
   fetch(transformURL('https://apply.vandyhacks.org/api/walkin/profile'), 
   {  
     method: 'POST',  
