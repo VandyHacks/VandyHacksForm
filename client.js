@@ -56,9 +56,9 @@ dom("#school").addEventListener("keyup", e => {
 function submitform() {
   fetch('api/walkin/profile', {  
     method: 'POST',  
-    headers: {
+    headers: new Headers({
       "x-event-secret": dom('#authcode').value,
-    },
+    }),
     body: JSON.stringify({
       name: dom('#name').value,
       school: dom('#school').value,
@@ -79,13 +79,13 @@ function submitform() {
 
 /**************************************************************************************************/
 /*********************************** Authorization stuff ******************************************/
-
+/*
 async function authorizedJSONFetch(url) {
   const res = await fetch(transformURL(url), {
     headers:new Headers({ "x-event-secret": token })
   });
   return await res.json();
-}
+}*/
 
 // set auth JWT token
 async function setToken() {
