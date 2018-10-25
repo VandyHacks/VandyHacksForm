@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
   <style>
+    nav {
+        text-align: center;
+        width: 100%;
+    }
     html, body {
         background-color: rgb(60, 56, 80);
         color: #e6e6e6;
@@ -40,7 +44,7 @@
     <h1>VandyHacks V Walk-in Form</h1>
   </nav>
   <div id='maindiv'>
-    <div class="container center-block" style="width: 50%;">
+    <div class="container center-block">
         <div class="row center-block">
           <div class="col" id = "forms">
             <form id = "myForm" action = "https://apply.vandyhacks.org/api/walkin/profile" method = "POST" onsubmit="submitform()" class="justify-content-center">
@@ -63,6 +67,8 @@
                 <label for="phone">Phone Number</label>
                 <input type="tel" class="form-control" name="phone" id="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                   required>
+              </div>
+              <div>
                 <select class="custom-select" name="year" id="year-selector" required>
                   <option selected>Graduation Year</option>
                 </select>
