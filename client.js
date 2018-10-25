@@ -3,6 +3,13 @@ const input = document.getElementById('school');
 const universityList = UNIVERSITIES;
 let token;
 
+const COLORS = {
+  GREEN: 'rgb(80, 187, 80)',
+  RED: 'rgb(139, 0, 0)',
+  LIGHT: 'rgb(230, 230, 230)',
+  DARK: 'rgb(60, 56, 80)'
+}
+
 window.onload = event => {
   // fill grad year select
   ['2018', '2019', '2020', '2021', '2022'].forEach(e => {
@@ -55,7 +62,8 @@ dom("#school").addEventListener("keyup", e => {
 
 
 function submitform() {
-  fetch('https://apply.vandyhacks.org/api/walkin/profile', {  
+  fetch(transformURL('https://apply.vandyhacks.org/api/walkin/profile'), 
+  {  
     method: 'POST',  
     headers: new Headers({
       "x-event-secret": token,
@@ -69,11 +77,11 @@ function submitform() {
       gender: dom('#gender').value,
     })
   })
-  .then(function (data) {  
-    console.log('Request success: ', data);  
+  .then(data => {  
+    console.log('Request success: ', data);
   })  
-  .catch(function (error) {  
-    console.log('Request failure: ', error);  
+  .catch(error => {  
+    console.log('Request failure: ', error);
   });
   return false;
 };
