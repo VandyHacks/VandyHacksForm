@@ -61,21 +61,23 @@ dom("#school").addEventListener("keyup", e => {
 });
 
 
-function submitform(e) {
-  e.preventDefault();
-  fetch(transformURL('https://apply.vandyhacks.org/api/walkin/profile'), 
-  {  
-    method: 'POST',  
-    headers: new Headers({
-      "x-event-secret": token,
-    }),
+function submitform() {
+  // e.preventDefault();
+  console.log('submit');
+  fetch('https://jsonplaceholder.typicode.com/posts', 
+  {
+    headers: {
+      'Content-Type': 'application/json',
+      'x-event-secret': token
+    },
+    method: 'POST',
     body: JSON.stringify({
       name: dom('#name').value,
       school: dom('#school').value,
       email: dom('#email').value,
       phone: dom('#phone').value,
-      year: dom('#year').value,
-      gender: dom('#gender').value,
+      year: dom('#year-selector').value,
+      gender: dom('#gender-selector').value
     })
   })
   .then(data => {  
