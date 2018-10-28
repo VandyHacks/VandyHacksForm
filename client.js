@@ -60,20 +60,20 @@ dom("#school").addEventListener("keyup", e => {
   updateUnivList();
 });
 
-function submitform(e) {
-  e.preventDefault();
+function submitform() {
   fetch(transformURL("https://apply.vandyhacks.org/api/walkin/profile"), {
     method: "POST",
     headers: new Headers({
-      "x-event-secret": token
+      "x-event-secret": token,
+      "Content-Type": "application/json; charset=utf-8"
     }),
     body: JSON.stringify({
-      name: dom("#name").value,
-      school: dom("#school").value,
-      email: dom("#email").value,
-      phone: dom("#phone").value,
-      year: dom("#year").value,
-      gender: dom("#gender").value
+      name: $("#name").val(),
+      school: $("#school").val(),
+      email: $("#email").val(),
+      phone: $("#phone").val(),
+      year: $("#year").val(),
+      gender: $("#gender").val()
     })
   })
     .then(data => {
