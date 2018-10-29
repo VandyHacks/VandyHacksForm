@@ -77,10 +77,22 @@ function submitform() {
     })
   })
     .then(data => {
-      console.log("Request success: ", data);
+      if (data.ok) {
+        $("#error-msg").css("display", "none");
+        $("#success-msg").css("display", "block");
+        $("#success-msg").text("Success!");
+      } else {
+        $("#success-msg").css("display", "none");
+        $("#error-msg").css("display", "block");
+        $("#error-msg").text("An account for this email already exists.");
+      }
+      resetInputs();
     })
     .catch(error => {
-      console.log("Request failure: ", error);
+      $("#sucess-msg").css("display", "none");
+      $("#error-msg").css("display", "block");
+      $("#error-msg").text(`Error: ${error}`);
+      resetInputs();
     });
   return false;
 }
@@ -148,4 +160,9 @@ function hideInputs(hide) {
   elems.forEach(e => {
     dom(e).style.display = hide ? "none" : "block";
   });
+}
+
+function resetInputs() {
+  $("#myForm :input").val("");
+  $("#submitBtn").val("Submit");
 }

@@ -15,28 +15,41 @@
         text-align: center;
         width: 100%;
     }
+
     html, body {
         background-color: rgb(60, 56, 80);
         color: #e6e6e6;
     }
+
     #maindiv {
         margin: auto;
         width: 40%;
         display: none;
     }
 
-    @media only screen and (max-width: 600px) {
-        #maindiv {
-        width: 100%;
-        }
-    }
-
     #year-selector, #gender-selector {
       max-width: 200px;
       margin: .5em;
     }
+
     #select-parent {
       text-align: center;
+    }
+
+    #error-msg {
+      text-align: center;
+      display: none;
+    }
+
+    #success-msg {
+      text-align: center;
+      display: none;
+    }
+
+    @media only screen and (max-width: 600px) {
+        #maindiv {
+        width: 100%;
+        }
     }
   </style>
 </head>
@@ -52,11 +65,13 @@
     <h2>VandyHacks V Walk-in Form</h2>
   </nav>
   <br>
-  <div id='maindiv'>
+  <div id="maindiv">
     <div class="container center-block">
+        <p id="error-msg" class="bg-danger"></p>
+        <p id="success-msg" class="bg-success"></p>
         <div class="row center-block">
           <div class="col" id = "forms">
-            <form id = "myForm" onsubmit="return submitform();" class="justify-content-center">
+            <form id="myForm" onsubmit="return submitform();" class="justify-content-center">
               <div class="form-group">
                 <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" required>
               </div>
@@ -86,7 +101,7 @@
               </div>
               <br>
               <div class="text-center">
-                <input type="submit" class="btn btn-outline-secondary" value="Submit">
+                <input id="submitBtn" type="submit" class="btn btn-outline-secondary" value="Submit">
               </div>
             </form>
           </div>
