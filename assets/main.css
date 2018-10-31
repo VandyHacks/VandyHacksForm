@@ -1,0 +1,56 @@
+nav {
+  text-align: center;
+  width: 100%;
+}
+
+html,
+body {
+  background-color: rgb(60, 56, 80);
+  color: #e6e6e6;
+}
+
+#maindiv {
+  margin: auto;
+  width: 40%;
+  display: none;
+}
+
+#year-selector,
+#gender-selector {
+  max-width: 200px;
+  margin: 0.5em;
+}
+
+#select-parent {
+  text-align: center;
+}
+
+#error-msg {
+  text-align: center;
+  display: none;
+}
+
+#success-msg {
+  text-align: center;
+  display: none;
+}
+
+.awesomplete {
+  width: 100%;
+}
+
+.awesomplete > ul {
+  color: black !important;
+  background: white !important;
+}
+
+.awesomplete mark {
+  background: none !important;
+  padding: 0 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  #maindiv {
+    width: 100%;
+  }
+}

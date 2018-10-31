@@ -26,41 +26,19 @@ window.onload = event => {
     newoption.text = e;
     dom("#gender-selector").appendChild(newoption);
   });
+
+  // populate schools
+  new Awesomplete(input, {
+    list: universityList,
+    minChars: 1,
+    maxItems: 5,
+    autoFirst: true
+  });
+
   hideInputs(true);
 };
 
-function updateUnivList() {
-  // TODO: fix dropdown is only shown properly when pressing backspace, doesn't show when typing
-  // clear
-  dataList.innerHTML = "";
-  // match input
-  const inputText = input.value.trim();
-  const criteria = e => e.toLowerCase().includes(inputText.toLowerCase());
-  const results = universityList.filter(criteria).slice(0, 5);
-
-  // build new list
-  results.forEach(item => {
-    const option = document.createElement("option");
-    option.value = item;
-    // check if the item already exists in dataList; remove an item if length > 4
-    dataList.appendChild(option);
-  });
-  console.log(dataList.options);
-}
-
-dom("#school").addEventListener("keyup", e => {
-  console.log(e.keyCode);
-  if (e.keyCode === 13) {
-    console.log("Enter pressed.");
-    // put top result of dropdown as html value
-    input.value = dataList.options[0].value;
-    // focus on next elem
-    dom("#email").focus();
-  }
-  updateUnivList();
-});
-
-function submitform() {
+let submitform = () => {
   fetch(transformURL("https://apply.vandyhacks.org/api/walkin/profile"), {
     method: "POST",
     headers: new Headers({
@@ -95,21 +73,13 @@ function submitform() {
       resetInputs();
     });
   return false;
-}
+};
 
 /**************************************************************************************************/
 /*********************************** Authorization stuff ******************************************/
-/*
-async function authorizedJSONFetch(url) {
-  const res = await fetch(transformURL(url), {
-    headers:new Headers({ "x-event-secret": token })
-  });
-  return await res.json();
-}*/
 
 // set auth JWT token
-async function setToken() {
-  console.log(token);
+let setToken = async () => {
   try {
     const res = await fetch(
       transformURL("https://apply.vandyhacks.org/auth/eventcode/"),
@@ -129,13 +99,12 @@ async function setToken() {
       dom("#maindiv").style.display = "block";
       hideInputs(false);
     } else {
-      console.log("invalid token");
       alert("Invalid token");
     }
   } catch (err) {
     return console.error(err);
   }
-}
+};
 
 // On auth code popup submit, set the token and call setToken()
 dom("#authcode").addEventListener("keyup", e => {
@@ -148,21 +117,21 @@ dom("#authcode").addEventListener("keyup", e => {
 /**************************************************************************************************/
 /****************************************** Utils *************************************************/
 
-function transformURL(url) {
+let transformURL = url => {
   const isDev = !location.hostname.endsWith("vandyhacks.org");
   // bypass CORS issues in client-side API calls during localhost/dev
   return isDev ? "https://cors-anywhere.herokuapp.com/" + url : url;
-}
+};
 
 // toggle hiding elems
-function hideInputs(hide) {
+let hideInputs = hide => {
   const elems = ["#forms"];
   elems.forEach(e => {
     dom(e).style.display = hide ? "none" : "block";
   });
-}
+};
 
-function resetInputs() {
+let resetInputs = () => {
   $("#myForm :input").val("");
   $("#submitBtn").val("Submit");
-}
+};
